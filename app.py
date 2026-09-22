@@ -16,7 +16,7 @@ from plotting_utils import (
 )
 
 # Configuración inicial de la página
-st.set_page_state = "expanded"
+#st.set_page_state = "expanded"
 st.set_page_config(
     page_title="Familias Paramétricas | Actuaría FMAT",
     page_icon="🏛️",
@@ -115,15 +115,17 @@ st.markdown('<p class="sub-title">Probabilidad I</p>', unsafe_allow_html=True)
 
 # Navegación Superior
 nav_tabs = st.tabs([
-    "📘 Módulo 1: Explorador Individual",
-    "🔬 Módulo 2: Laboratorio de Comparación & Convergencias",
-    "ℹ️ Módulo 3: Formulario & Glosario Actuarial"
+    "⚡ Módulo 1:",
+    "🔬 Módulo 2",
+    "ℹ️ Módulo 3"
 ])
 
 
 # =============================================================================
 # MÓDULO 1: EXPLORADOR INDIVIDUAL DE FAMILIAS
 # =============================================================================
+st.markdown('<h2 class="sub-title">Módulo 1: Explorador Individual de Familias</h2>', unsafe_allow_html=True)
+
 with nav_tabs[0]:
     col_sel1, col_sel2 = st.columns([1, 2])
     
@@ -138,14 +140,14 @@ with nav_tabs[0]:
         )
     
     # Filtrado de catálogo
-    if cat_filter.startswith("Discretas"):
+    """ if cat_filter.startswith("Discretas"):
         avail_dists = {k: v for k, v in DISTRIBUTIONS.items() if v["category"] == "Discreta"}
     elif cat_filter.startswith("Continuas"):
         avail_dists = {k: v for k, v in DISTRIBUTIONS.items() if v["category"] == "Continua"}
     else:
-        avail_dists = DISTRIBUTIONS
-
-    dist_options = {f"{v['name']} ({v['category']})": k for k, v in avail_dists.items()}
+        avail_dists = DISTRIBUTIONS """
+    avail_dists = DISTRIBUTIONS
+    dist_options = {f"{v['name']} ({v['category']})": k for k, v in avail_dists.items()} #{f"{v['name']} ({v['category']})": k for k, v in avail_dists.items()}
     
     with col_sel2:
         selected_label = st.selectbox(
@@ -379,6 +381,7 @@ with nav_tabs[0]:
 # =============================================================================
 # MÓDULO 2: LABORATORIO DE COMPARACIÓN & CONVERGENCIAS ACTUARIALES
 # =============================================================================
+st.markdown('<h2 class="sub-title">Módulo 2: Laboratorio de Comparación y Convergencias</h2>', unsafe_allow_html=True)
 with nav_tabs[1]:
     st.markdown("## 🔬 Laboratorio de Comparación y Convergencias")
     st.markdown("En la práctica actuarial, la selección de la distribución adecuada define la solvencia de una compañía de seguros o fondo de pensiones.")
@@ -544,6 +547,7 @@ with nav_tabs[1]:
 # =============================================================================
 # MÓDULO 3: TABLA MAESTRA & GLOSARIO ACTUARIAL
 # =============================================================================
+st.markdown('<h2 class="sub-title">Módulo 3: Tabla Maestra y Glosario Actuarial</h2>', unsafe_allow_html=True)
 with nav_tabs[2]:
     st.markdown(f"## 📊 Formulario de las {len(DISTRIBUTIONS)} Familias Paramétricas")
     #st.markdown("Guía condensada de referencia rápida con formulación matemática rigurosa para el estudiante de actuaría.")
