@@ -532,6 +532,49 @@ with nav_tabs[1]:
         fig_free = plot_comparison(d1_info, d1_params, d2_info, d2_params)
         st.plotly_chart(fig_free, use_container_width=True)
 
+    st.markdown("---")
+    st.markdown("## 📖 Glosario de Conceptos Actuariales")
+        
+    col_g1, col_g2 = st.columns(2)
+        
+    with col_g1:
+    st.markdown(r"""
+        ### 1. Función de Supervivencia $S(x)$
+        $$S(x) = P(X > x) = 1 - F_X(x)$$
+        - En **seguros de vida**: Probabilidad de que un individuo de edad 0 sobreviva hasta la edad $x$.
+        - En **seguros de daños y reaseguro**: Probabilidad de que el monto de una pérdida supere el deducible o límite de retención $d$.
+            
+        ### 2. Deducibles Ordinarios y Monto Pagado
+        Si $X$ es el monto de siniestro y $d$ es el deducible:
+        $$Y = (X - d)_+ = \max(0, X - d)$$
+        El costo medio esperado para la aseguradora se calcula integrando la función de supervivencia:
+        $$E[Y] = \int_d^\infty S(x) \, dx$$
+        
+        ### 3. Sobredispersión (*Overdispersion*)
+        Ocurre cuando la varianza de los datos es estrictamente mayor que su media:
+        $$\text{Var}(X) > E[X]$$
+        Es la razón principal por la que la distribución **Binomial Negativa** reemplaza a la **Poisson** en la tarificación de seguros generales de autos y gastos médicos.
+        """)
+            
+    with col_g2:
+        st.markdown(r"""
+        ### 4. Distribuciones de Colas Pesadas (*Fat/Heavy Tails*)
+        Una distribución es de cola pesada si su función de supervivencia decae más lentamente que una exponencial, es decir:
+        $$\lim_{x \to \infty} e^{tx} P(X > x) = \infty, \quad \forall t > 0$$
+        Esto implica que la **FGM $M_X(t)$ no existe para ningún $t > 0$**. Ejemplos: $t$ de Student, Pareto, Lognormal. En actuaría, estas familias modelan riesgos catastróficos y siniestros de alta severidad.
+        
+        ### 5. Value at Risk (VaR)
+        Dado un nivel de confianza $\alpha \in (0, 1)$, el $\text{VaR}_\alpha(X)$ es el cuantil correspondiente:
+        $$\text{VaR}_\alpha(X) = F_X^{-1}(\alpha) = \inf \{ x \in \mathbb{R} : F_X(x) \ge \alpha \}$$
+        Bajo los marcos regulatorios de **Solvencia II** (Europa) y la **CNSF** (México), el requerimiento de capital de solvencia anual de una aseguradora se calibra al cuantil $\alpha = 99.5\%$.
+        
+        ### 6. Función Generadora de Momentos y Convolución
+        Para la suma de pérdidas independientes $S_n = X_1 + \dots + X_n$:
+        $$M_{S_n}(t) = \prod_{i=1}^n M_{X_i}(t)$$
+        Si los riesgos son i.i.d., $M_{S_n}(t) = [M_X(t)]^n$. Esta propiedad algebraica permite encontrar la distribución exacta del monto agregado de reclamaciones en carteras aseguradas.
+        """)
+    
+
 
 # =============================================================================
 # MÓDULO 3: TABLA MAESTRA & GLOSARIO ACTUARIAL
@@ -589,48 +632,7 @@ with nav_tabs[2]:
             mime="text/csv"
         )
     
-    st.markdown("---")
-    st.markdown("## 📖 Glosario de Conceptos Actuariales")
     
-    col_g1, col_g2 = st.columns(2)
-    
-    with col_g1:
-        st.markdown(r"""
-        ### 1. Función de Supervivencia $S(x)$
-        $$S(x) = P(X > x) = 1 - F_X(x)$$
-        - En **seguros de vida**: Probabilidad de que un individuo de edad 0 sobreviva hasta la edad $x$.
-        - En **seguros de daños y reaseguro**: Probabilidad de que el monto de una pérdida supere el deducible o límite de retención $d$.
-        
-        ### 2. Deducibles Ordinarios y Monto Pagado
-        Si $X$ es el monto de siniestro y $d$ es el deducible:
-        $$Y = (X - d)_+ = \max(0, X - d)$$
-        El costo medio esperado para la aseguradora se calcula integrando la función de supervivencia:
-        $$E[Y] = \int_d^\infty S(x) \, dx$$
-        
-        ### 3. Sobredispersión (*Overdispersion*)
-        Ocurre cuando la varianza de los datos es estrictamente mayor que su media:
-        $$\text{Var}(X) > E[X]$$
-        Es la razón principal por la que la distribución **Binomial Negativa** reemplaza a la **Poisson** en la tarificación de seguros generales de autos y gastos médicos.
-        """)
-        
-    with col_g2:
-        st.markdown(r"""
-        ### 4. Distribuciones de Colas Pesadas (*Fat/Heavy Tails*)
-        Una distribución es de cola pesada si su función de supervivencia decae más lentamente que una exponencial, es decir:
-        $$\lim_{x \to \infty} e^{tx} P(X > x) = \infty, \quad \forall t > 0$$
-        Esto implica que la **FGM $M_X(t)$ no existe para ningún $t > 0$**. Ejemplos: $t$ de Student, Pareto, Lognormal. En actuaría, estas familias modelan riesgos catastróficos y siniestros de alta severidad.
-        
-        ### 5. Value at Risk (VaR)
-        Dado un nivel de confianza $\alpha \in (0, 1)$, el $\text{VaR}_\alpha(X)$ es el cuantil correspondiente:
-        $$\text{VaR}_\alpha(X) = F_X^{-1}(\alpha) = \inf \{ x \in \mathbb{R} : F_X(x) \ge \alpha \}$$
-        Bajo los marcos regulatorios de **Solvencia II** (Europa) y la **CNSF** (México), el requerimiento de capital de solvencia anual de una aseguradora se calibra al cuantil $\alpha = 99.5\%$.
-        
-        ### 6. Función Generadora de Momentos y Convolución
-        Para la suma de pérdidas independientes $S_n = X_1 + \dots + X_n$:
-        $$M_{S_n}(t) = \prod_{i=1}^n M_{X_i}(t)$$
-        Si los riesgos son i.i.d., $M_{S_n}(t) = [M_X(t)]^n$. Esta propiedad algebraica permite encontrar la distribución exacta del monto agregado de reclamaciones en carteras aseguradas.
-        """)
-
 # Pie de página
 st.markdown("---")
 st.caption("🏛️ Universidad Autónoma de Yucatán | Facultad de Matemáticas (FMAT) — Licenciatura en Actuaría | Diseñado como recurso docente interactivo de Probabilidad y Modelado Estocástico.")
