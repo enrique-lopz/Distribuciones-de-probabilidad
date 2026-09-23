@@ -110,8 +110,7 @@ st.markdown("""
 # ENCABEZADO PRINCIPAL
 # =============================================================================
 st.markdown('<div class="badge-fmat">🎓 Facultad de Matemáticas — UADY | Licenciatura en Actuaría</div>', unsafe_allow_html=True)
-st.markdown('<h1 class="main-title"> 🏛️ Familias Paramétricas de Probabilidad</h1>', unsafe_allow_html=True)
-st.markdown('<p class="sub-title">Probabilidad I</p>', unsafe_allow_html=True)
+st.markdown('<h1 class="main-title"> 🏛️ Probabilidad I</h1>', unsafe_allow_html=True)
 
 # Navegación Superior
 nav_tabs = st.tabs([
@@ -124,10 +123,10 @@ nav_tabs = st.tabs([
 # =============================================================================
 # MÓDULO 1: EXPLORADOR INDIVIDUAL DE FAMILIAS
 # =============================================================================
-st.markdown('<h2 class="sub-title">Módulo 1: Explorador Individual de Familias</h2>', unsafe_allow_html=True)
+
 
 with nav_tabs[0]:
-    st.markdown('<h1 class="sub-title">⚡Explorador Individual de Familias</h1>', unsafe_allow_html=True)
+    st.markdown("##⚡Explorador Individual de Familias Paramétricas")
     col_sel1, col_sel2 = st.columns([1, 2])
     
     num_disc = sum(1 for v in DISTRIBUTIONS.values() if v["category"] == "Discreta")
