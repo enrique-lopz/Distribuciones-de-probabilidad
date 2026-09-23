@@ -538,7 +538,7 @@ with nav_tabs[1]:
     col_g1, col_g2 = st.columns(2)
         
     with col_g1:
-    st.markdown(r"""
+        st.markdown(r""" 
         ### 1. Función de Supervivencia $S(x)$
         $$S(x) = P(X > x) = 1 - F_X(x)$$
         - En **seguros de vida**: Probabilidad de que un individuo de edad 0 sobreviva hasta la edad $x$.
