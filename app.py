@@ -126,7 +126,8 @@ nav_tabs = st.tabs([
 
 
 with nav_tabs[0]:
-    st.markdown("##⚡Explorador Individual de Familias Paramétricas")
+    st.markdown("## ⚡Explorador Individual de Familias Paramétricas")
+    st.markdown("Explora cada familia de distribuciones, ajusta sus parámetros y observa cómo cambian su forma. Explora cada una de las secciones para conocer sus fórmulas principales, explorar las funciones de distribución y cuantiles, así como un resumen de su aplicación en la ciencia actuarial.")
     col_sel1, col_sel2 = st.columns([1, 2])
     
     num_disc = sum(1 for v in DISTRIBUTIONS.values() if v["category"] == "Discreta")
